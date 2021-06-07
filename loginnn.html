@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 103%;
+        }
+        .cont1{
+            display:flex;
+            justify-content:flex-end;
+            border: 1px solid brown;
+        }
+        .cont1-box1{
+            width:40%;
+            display:flex;
+            justify-content:space-around;
+            /* background-color: red; */
+        }
+        .cont1-box1>p{
+            cursor:pointer;
+        }
+        .cont2>form{
+            display: grid;
+            grid-gap: 20px;
+            width: 40%;
+            margin: 40px auto;
+        }
+       input,button{
+           height: 130%;
+           width: 100%;
+       }
+       button{
+           background-color: blue;
+           color: white;
+           border: 1px solid transparent;
+       }
+       .cont3{
+           color: red;
+           text-align: center;
+       }
+    </style>
+</head>
+<body>
+    <div class="cont1">
+        <div class="cont1-box1">
+            <p onclick="(location.href='index.html')">Home</p>
+            <p onclick="(location.href='loginnn.html')">Login</p>
+            <p onclick="(location.href='signuppp.html')">Signup</p>
+            <p onclick="(location.href='menu.html')">Menu</p>
+        </div>
+    </div>
+    <div class="cont2">
+        <form id="loginform">
+            <label>Email</label>
+            <input type="text" id="email">
+            <label>Password</label>
+            <input type="text" id="password">
+            <button onclick="login(event)">Login</button>
+        </form>
+    </div>
+    <div class="cont3" id="displaydiv">
+
+    </div>
+</body>
+</html>
+<script>
+    function login(e){
+        e.preventDefault()
+        var form=document.getElementById("loginform")
+        var email=form.email.value
+        var password=form.password.value
+        var userdata={
+            email,
+            password,
+        }
+        var data=localStorage.getItem("tuserdata")
+        if(data==null){
+
+        }else{
+            data=JSON.parse(data)
+            var bool=false
+            var bool1=false
+            for(i=0;i<data.length;i++){
+                if(data[i].email==userdata.email&&data[i].password==userdata.password){
+                    bool=true
+                    break
+                }
+                if(data[i].email==userdata.email||data[i].password==userdata.password){
+                    bool1=true
+                }
+            }
+            if(bool){
+                location.href="index.html"
+            }
+            else{
+                document.getElementById("displaydiv").innerText="Wrong Crredentials"
+            }
+            if(bool1){
+                document.getElementById("displaydiv").innerText="email or password is wrong"
+            }
+        }
+        // console.log("hello")
+    }
+</script>

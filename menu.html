@@ -1,0 +1,141 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .cont1 {
+            display: flex;
+            justify-content: flex-end;
+            border: 1px solid brown;
+        }
+
+        .cont1-box1 {
+            width: 40%;
+            display: flex;
+            justify-content: space-around;
+            /* background-color: red; */
+        }
+
+        .cont1-box1>p {
+            cursor: pointer;
+        }
+        .cont2{
+            display: grid;
+            grid-template: "a b c";
+        }
+        img{
+            width: 90%;
+        }
+        button{
+            font-size: 120%;
+            background-color: blue;
+            color: white;
+            border: 1px solid transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cont1">
+        <div class="cont1-box1">
+            <p onclick="(location.href='index.html')">Home</p>
+            <p onclick="(location.href='loginnn.html')">Login</p>
+            <p onclick="(location.href='signuppp.html')">Signup</p>
+            <p onclick="(location.href='menu.html')">Menu</p>
+            <p onclick="(location.href='cart.html')">Cart</p>
+        </div>
+    </div>
+    <div class="cont2" id="menu-div">
+
+    </div>
+</body>
+
+</html>
+<script>
+    var menu = [
+        {
+            name: "biryani",
+            price: "120",
+            description: "hyderabadi biryani freshly made with love",
+            ttp: "10 minutes",
+            imagelink: "https://static.toiimg.com/thumb/54308405.cms?imgsize=510571&width=800&height=800",
+        },
+        {
+            name: "pizza",
+            price: "170",
+            description: "italian pizza freshly made with love",
+            ttp: "5 minutes",
+            imagelink: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80",
+        },
+        {
+            name: "burger",
+            price: "180",
+            description: "burger freshly made with hate",
+            ttp: "15 minutes",
+            imagelink: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVyZ2Vyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+        },
+        {
+            name: "chicken shawarma",
+            price: "100",
+            description: "packed with mayonese made with love",
+            ttp: " 3 minutes",
+            imagelink: "https://www.licious.in/blog/wp-content/uploads/2020/12/Chicken-Shawarma.jpg"
+        },
+        {
+            name: "panner butter masala",
+            price: "180",
+            description: "north indian dish made with love",
+            ttp: "20 minutes",
+            imagelink: "https://www.indianhealthyrecipes.com/wp-content/uploads/2014/11/paneer-butter-masala-recipe-2.jpg",
+        },
+        {
+            name: "veg biryani",
+            price: "100",
+            description: "veg biryani freshly made with love",
+            ttp: "2 minutes",
+            imagelink: "https://www.whiskaffair.com/wp-content/uploads/2020/08/Veg-Biryani-2-3-500x375.jpg"
+        },
+    ]
+    let parent=document.getElementById("menu-div")
+    function mennu(){
+       menu.forEach(function (thing) {
+             let div=document.createElement("div")
+             div.innerHTML=`
+             <p>Name:${thing.name}</p>
+             <p>Price:${thing.price}</p>
+             <p>Description:${thing.description}</p>
+             <p>Time taken to prepare:${thing.ttp}</p>
+             <img src="${thing.imagelink}">
+             `
+             let btn=document.createElement("button")
+             btn.textContent="Add to Cart"
+           
+             btn.onclick=function (){
+                 cartt(thing)
+             }
+             div.append(btn)
+             parent.append(div)
+       })
+      
+    }
+    mennu()
+    function cartt(thing){
+       
+        let arr=localStorage.getItem("cart1")
+        if(arr==null){
+            arr=[]
+        }
+        else{
+            arr=JSON.parse(arr)
+        }
+        arr.push(thing)
+        localStorage.setItem("cart1",JSON.stringify(arr))
+    }
+</script>

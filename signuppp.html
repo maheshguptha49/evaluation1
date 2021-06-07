@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 103%;
+        }
+        .cont1{
+            display:flex;
+            justify-content:flex-end;
+            border: 1px solid brown;
+        }
+        .cont1-box1{
+            width:40%;
+            display:flex;
+            justify-content:space-around;
+            /* background-color: red; */
+        }
+        .cont1-box1>p{
+            cursor:pointer;
+        }
+        .cont2>form{
+            display: grid;
+            grid-gap: 20px;
+            width: 40%;
+            margin: 40px auto;
+        }
+       input,button{
+           height: 130%;
+           width: 100%;
+       }
+       button{
+           background-color: blue;
+           color: white;
+           border: 1px solid transparent;
+       }
+    </style>
+</head>
+<body>
+    <div class="cont1">
+        <div class="cont1-box1">
+            <p onclick="(location.href='index.html')">Home</p>
+            <p onclick="(location.href='loginnn.html')">Login</p>
+            <p onclick="(location.href='signuppp.html')">Signup</p>
+            <p onclick="(location.href='menu.html')">Menu</p>
+        </div>
+    </div>
+    <div class="cont2">
+        <div></div>
+        <form id="signupform">
+            <label>Name</label>
+            <input type="text" id="name">
+            <label>Contact</label>
+            <input type="number" id="contact">
+            <label>Email</label>
+            <input type="text" id="email">
+            <label>Password</label>
+            <input type="text" id="password">
+            <button onclick="signup(event)">Signup</button>
+        </form>
+        
+    </div>
+    <div id="emptyinp"></div>
+</body>
+</html>
+<script>
+    function signup(e){
+        e.preventDefault()
+        var form=document.getElementById("signupform")
+        
+        var name=form.name.value
+        var contact=form.contact.value
+        var email=form.email.value
+        var password=form.password.value
+        if(name!=""&&contact!=""&&email!=""&&password!=""){
+        var userdata={
+            name,
+            contact,
+            email,
+            password,
+        }
+        let arr=localStorage.getItem("tuserdata")
+        if(arr==null){
+            arr=[]
+        }
+        else{
+            arr=JSON.parse(arr)
+        }
+        arr.push(userdata)
+        localStorage.setItem("tuserdata",JSON.stringify(arr))
+        location.href="loginnn.html"
+    }
+    else{
+        let s=document.getElementById("emptyinp")
+        s.style.color="red"
+        s.style.textAlign="center"
+        s.innerText="empty input please type something"
+    }
+    }
+</script>
